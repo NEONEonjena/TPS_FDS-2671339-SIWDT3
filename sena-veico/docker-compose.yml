@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+      - ./application/third_party:/var/www/html/application/third_party
+    networks:
+      - codeigniter-network
+
+  db:
+    build: .
+    environment:
+      MYSQL_DATABASE: veico_tools
+      MYSQL_ROOT_PASSWORD: 
+      ENVIRONMENT: development
+    volumes:
+      - ./veico_tools.sql:/docker-entrypoint-initdb.d/veico_tools.sql
+    networks:
+      - codeigniter-network
+
+networks:
+  codeigniter-network:
+    driver: bridge
