@@ -1,4 +1,0 @@
-**Inicio de Sesión Administrador**
-
-Nombre de usuario:  admin
-Contraseña:         Password@123
